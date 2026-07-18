@@ -46,7 +46,7 @@ local function Create(className, parent, properties, corner, stroke)
 end
 
 local ScreenGui = Create("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"), { Name = "ProjectProp_V1_Optimized", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling })
-local ToggleButton = Create("ImageButton", ScreenGui, { Name = "ToggleMenu", Size = UDim2.new(0, 60, 0, 60), Position = UDim2.new(0, 15, 0, 140), BackgroundTransparency = 1, Image = "rbxassetid://132599109024812" })
+local ToggleButton = Create("ImageButton", ScreenGui, { Name = "ToggleMenu", Size = UDim2.new(0, 80, 0, 80), Position = UDim2.new(0, 15, 0, 140), BackgroundTransparency = 1, Image = "rbxassetid://132599109024812" })
 
 -- Sistema de Arrasto Unificado
 local function SetupDrag(guiObj)
