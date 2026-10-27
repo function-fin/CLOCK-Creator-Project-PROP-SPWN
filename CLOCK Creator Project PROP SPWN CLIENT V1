@@ -1,6 +1,3 @@
--- | Project PROP V1 - Código Otimizado (Clean Architecture + Server Loop) |
--- | Desenvolvido por: TheClockWorkDEV & Adaptado para Interface |
-
 local Players, UserInputService = game:GetService("Players"), game:GetService("UserInputService")
 local LocalPlayer, JogadorSelecionado, FONTE_PROJETO = Players.LocalPlayer, nil, Enum.Font.Arcade
 
@@ -59,7 +56,20 @@ local function Create(className, parent, properties, corner, stroke)
     if parent then obj.Parent = parent end return obj
 end
 
-local ScreenGui = Create("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"), { Name = "ProjectProp_V1_Optimized", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling })
+local ScreenGui = Create("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"), { Name = "ProjectProp_V1_Optimized", ResetOnSpawn = false, IgnoreGuiInset = true, ZIndexBehavior = Enum.ZIndexBehavior.Sibling })
+
+-- ADAPTAÇÃO AUTOMÁTICA DE ESCALA (+80% NO PC, PADRÃO NO MOBILE)
+local uiScale = Instance.new("UIScale", ScreenGui)
+local function updateUIScale()
+    if not UserInputService.TouchEnabled then
+        uiScale.Scale = 1.8 -- Aumenta 80% no PC
+    else
+        uiScale.Scale = 1.0 -- Mantém tamanho padrão no mobile
+    end
+end
+UserInputService:GetPropertyChangedSignal("TouchEnabled"):Connect(updateUIScale)
+updateUIScale()
+
 local ToggleButton = Create("ImageButton", ScreenGui, { Name = "ToggleMenu", Size = UDim2.new(0, 80, 0, 80), Position = UDim2.new(0, 15, 0, 140), BackgroundTransparency = 1, Image = "rbxassetid://132599109024812" })
 
 -- Sistema de Arrasto Unificado
